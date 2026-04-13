@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "Tabmind",
+  "version": "0.1.0",
+  "description": "Smart tab grouping, search, and session management for Chromium and Firefox.",
+  "permissions": [
+    "tabs",
+    "tabGroups",
+    "storage",
+    "sessions",
+    "commands",
+    "alarms",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Tabmind"
+  },
+  "options_page": "options.html",
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Open Tabmind popup"
+    },
+    "search_tabs": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "Command+Shift+F"
+      },
+      "description": "Focus tab search"
+    },
+    "organize_tabs": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+O",
+        "mac": "Command+Shift+O"
+      },
+      "description": "Group tabs by domain"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

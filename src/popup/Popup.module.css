@@ -1,0 +1,136 @@
+.popup {
+  min-width: 360px;
+  max-width: 420px;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #111827;
+  background: #f8fafc;
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+  padding: 16px;
+}
+
+.header {
+  margin-bottom: 16px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.header p {
+  margin: 8px 0 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.controls {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.searchInput {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  background: white;
+}
+
+.groupBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.groupButton,
+.activeGroup {
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  padding: 8px 12px;
+  font-size: 0.87rem;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.groupButton {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.activeGroup {
+  background: #2563eb;
+  color: white;
+}
+
+.results {
+  display: grid;
+  gap: 10px;
+}
+
+.status {
+  padding: 24px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.tabCard {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+}
+
+.tabAction {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+}
+
+.tabAction:hover {
+  background: #f3f4f6;
+}
+
+.tabTitle {
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.tabMeta {
+  font-size: 0.82rem;
+  color: #6b7280;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tabBadge {
+  font-size: 0.8rem;
+  color: #374151;
+  background: #e0f2fe;
+  border-radius: 9999px;
+  padding: 6px 10px;
+}
+
+.footer {
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.footerStatus {
+  font-weight: 600;
+}
