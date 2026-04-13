@@ -11,17 +11,39 @@
 
 .header {
   margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
 }
 
 .header h1 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
 }
 
 .header p {
   margin: 8px 0 0;
   color: #6b7280;
   font-size: 0.95rem;
+  max-width: 220px;
+  line-height: 1.4;
+}
+
+.badgeGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.badge {
+  background: #eef2ff;
+  color: #3730a3;
+  border-radius: 9999px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
 .controls {
@@ -39,30 +61,35 @@
   background: white;
 }
 
-.groupBar {
+.sectionSwitch {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
+.sectionButton,
+.sectionActive,
 .groupButton,
 .activeGroup {
   border: 1px solid transparent;
   border-radius: 9999px;
-  padding: 8px 12px;
-  font-size: 0.87rem;
+  padding: 10px 14px;
+  font-size: 0.88rem;
   transition: all 0.15s ease;
   cursor: pointer;
 }
 
+.sectionButton,
 .groupButton {
-  background: #e5e7eb;
+  background: #f3f4f6;
   color: #111827;
 }
 
+.sectionActive,
 .activeGroup {
   background: #2563eb;
   color: white;
+  border-color: transparent;
 }
 
 .controlRow {
@@ -81,9 +108,9 @@
 
 .sessionInput,
 .saveButton {
-  border-radius: 12px;
+  border-radius: 14px;
   border: 1px solid #d1d5db;
-  padding: 10px 12px;
+  padding: 12px 14px;
   font-size: 0.95rem;
 }
 
@@ -96,12 +123,13 @@
   color: white;
   border: none;
   cursor: pointer;
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18);
 }
 
 .sessionPanel {
   margin-top: 16px;
   border: 1px solid #e5e7eb;
-  border-radius: 16px;
+  border-radius: 18px;
   padding: 14px;
   background: #ffffff;
 }
@@ -109,9 +137,22 @@
 .sessionPanelHeader {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+}
+
+.sessionNote {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 0.87rem;
+  line-height: 1.4;
+}
+
+.sessionCount {
+  font-size: 0.9rem;
+  color: #111827;
+  font-weight: 700;
 }
 
 .sessionList {
@@ -125,9 +166,9 @@
   align-items: center;
   gap: 12px;
   border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  padding: 12px;
-  background: #f9fafb;
+  border-radius: 18px;
+  padding: 14px;
+  background: #f8fafc;
 }
 
 .sessionName {
@@ -187,9 +228,10 @@
 }
 
 .tabCard {
-  background: white;
-  border-radius: 14px;
-  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
 }
 
 .tabCard[draggable='true'] {
@@ -213,13 +255,13 @@
 }
 
 .tabAction:hover {
-  background: #f3f4f6;
+  background: #eef2ff;
 }
 
 .tabTitle {
   font-size: 0.98rem;
-  font-weight: 600;
-  margin-bottom: 6px;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
 .tabMeta {
@@ -233,8 +275,8 @@
 
 .tabBadge {
   font-size: 0.8rem;
-  color: #374151;
-  background: #e0f2fe;
+  color: #1f2937;
+  background: #dbeafe;
   border-radius: 9999px;
   padding: 6px 10px;
 }
@@ -250,33 +292,6 @@
   color: #6b7280;
 }
 
-.tabCard {
-  background: white;
-  border-radius: 14px;
-  border: 1px solid #e5e7eb;
-}
-
-.tabAction {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  background: transparent;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  text-align: left;
-}
-
-.tabAction:hover {
-  background: #f3f4f6;
-}
-
-.tabTitle {
-  font-size: 0.98rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
 
 .tabMeta {
   font-size: 0.82rem;

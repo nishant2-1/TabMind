@@ -30,6 +30,7 @@ function Popup() {
   const [savedSessions, setSavedSessions] = useState([]);
   const [sessionName, setSessionName] = useState('');
   const [viewMode, setViewMode] = useState('list');
+  const [activeSection, setActiveSection] = useState('tabs');
   const [isLoading, setIsLoading] = useState(true);
   const [draggingTabId, setDraggingTabId] = useState(null);
   const [currentWindowId, setCurrentWindowId] = useState(null);
@@ -91,6 +92,7 @@ function Popup() {
     const sessions = await saveSessionData(name, currentTabs);
     setSavedSessions(sessions);
     setSessionName('');
+    setActiveSection('sessions');
   };
 
   const restoreSavedSession = async (sessionId) => {
@@ -172,107 +174,136 @@ function Popup() {
   return (
     <div className={styles.popup}>
       <header className={styles.header}>
-        <h1>Tabmind</h1>
-        <p>Workspace-style tab management with saved sessions and drag reorder.</p>
+        <div>
+          <h1>Tabmind</h1>
+          <p>Fast tab search, workspaces, and session recall.</p>
+        </div>
+        <div className={styles.badgeGroup}>
+          <span className={styles.badge}>{tabs.length} tabs</span>
+          <span className={styles.badge}>{savedSessions.length} sessions</span>
+        </div>
       </header>
 
-      <section className={styles.controls}>
-        <input
-          type="search"
-          placeholder="Search open tabs..."
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          className={styles.searchInput}
-        />
+      <div className={styles.sectionSwitch}>
+        <button
+          className={activeSection === 'tabs' ? styles.sectionActive : styles.sectionButton}
+          onClick={() => setActiveSection('tabs')}
+        >
+          Open tabs
+        </button>
+        <button
+          className={activeSection === 'sessions' ? styles.sectionActive : styles.sectionButton}
+          onClick={() => setActiveSection('sessions')}
+        >
+          Workspaces
+        </button>
+      </div>
 
-        <div className={styles.controlRow}>
-          <button
-            className={viewMode === 'list' ? styles.activeGroup : styles.groupButton}
-            onClick={() => setViewMode('list')}
-          >
-            List
-          </button>
-          <button
-            className={viewMode === 'kanban' ? styles.activeGroup : styles.groupButton}
-            onClick={() => setViewMode('kanban')}
-          >
-            Workspace
-          </button>
-        </div>
+      {activeSection === 'tabs' ? (
+        <>
+          <section className={styles.controls}>
+            <input
+              type="search"
+              placeholder="Search open tabs..."
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              className={styles.searchInput}
+            />
 
-        <div className={styles.sessionControls}>
-          <input
-            type="text"
-            placeholder="New session name"
-            value={sessionName}
-            onChange={(event) => setSessionName(event.target.value)}
-            className={styles.sessionInput}
-          />
-          <button className={styles.saveButton} onClick={saveCurrentSession}>
-            Save session
-          </button>
-        </div>
-      </section>
-
-      <section className={styles.sessionPanel}>
-        <div className={styles.sessionPanelHeader}>
-          <h2>Saved sessions</h2>
-          <span>{savedSessions.length} saved</span>
-        </div>
-        {savedSessions.length === 0 ? (
-          <div className={styles.status}>No saved sessions yet. Save your current workspace above.</div>
-        ) : (
-          <div className={styles.sessionList}>
-            {savedSessions.map((session) => (
-              <article key={session.id} className={styles.sessionCard}>
-                <div>
-                  <div className={styles.sessionName}>{session.name}</div>
-                  <div className={styles.sessionMeta}>{session.tabCount} tabs · saved {new Date(session.createdAt).toLocaleString()}</div>
-                </div>
-                <div className={styles.sessionActions}>
-                  <button className={styles.restoreButton} onClick={() => restoreSavedSession(session.id)}>
-                    Restore
-                  </button>
-                  <button className={styles.deleteButton} onClick={() => deleteSavedSession(session.id)}>
-                    Delete
-                  </button>
-                </div>
-              </article>
-            ))}
-          </div>
-        )}
-      </section>
-
-      <section className={styles.results}>
-        {isLoading ? (
-          <div className={styles.status}>Loading tabs...</div>
-        ) : viewMode === 'kanban' ? (
-          renderKanbanBoard()
-        ) : filteredTabs.length === 0 ? (
-          <div className={styles.status}>No matching tabs found.</div>
-        ) : (
-          filteredTabs.map((tab) => (
-            <article
-              key={tab.id}
-              className={styles.tabCard}
-              draggable
-              onDragStart={(event) => handleDragStart(event, tab.id)}
-              onDragOver={handleDragOver}
-              onDrop={(event) => handleDrop(event, tab.id)}
-            >
-              <button className={styles.tabAction} onClick={() => openInNewTab(tab.id)}>
-                <div>
-                  <div className={styles.tabTitle}>{tab.title || 'Untitled tab'}</div>
-                  <div className={styles.tabMeta} title={tab.url}>
-                    {tab.domain}
-                  </div>
-                </div>
-                <div className={styles.tabBadge}>{tab.groupTitle || 'Ungrouped'}</div>
+            <div className={styles.controlRow}>
+              <button
+                className={viewMode === 'list' ? styles.activeGroup : styles.groupButton}
+                onClick={() => setViewMode('list')}
+              >
+                List
               </button>
-            </article>
-          ))
-        )}
-      </section>
+              <button
+                className={viewMode === 'kanban' ? styles.activeGroup : styles.groupButton}
+                onClick={() => setViewMode('kanban')}
+              >
+                Workspace
+              </button>
+            </div>
+          </section>
+
+          <section className={styles.results}>
+            {isLoading ? (
+              <div className={styles.status}>Loading tabs...</div>
+            ) : viewMode === 'kanban' ? (
+              renderKanbanBoard()
+            ) : filteredTabs.length === 0 ? (
+              <div className={styles.status}>No matching tabs found.</div>
+            ) : (
+              filteredTabs.map((tab) => (
+                <article
+                  key={tab.id}
+                  className={styles.tabCard}
+                  draggable
+                  onDragStart={(event) => handleDragStart(event, tab.id)}
+                  onDragOver={handleDragOver}
+                  onDrop={(event) => handleDrop(event, tab.id)}
+                >
+                  <button className={styles.tabAction} onClick={() => openInNewTab(tab.id)}>
+                    <div>
+                      <div className={styles.tabTitle}>{tab.title || 'Untitled tab'}</div>
+                      <div className={styles.tabMeta} title={tab.url}>
+                        {tab.domain}
+                      </div>
+                    </div>
+                    <div className={styles.tabBadge}>{tab.groupTitle || 'Ungrouped'}</div>
+                  </button>
+                </article>
+              ))
+            )}
+          </section>
+        </>
+      ) : (
+        <section className={styles.sessionPanel}>
+          <div className={styles.sessionPanelHeader}>
+            <div>
+              <h2>Workspaces</h2>
+              <p className={styles.sessionNote}>Save your current open tabs as a session and restore them later.</p>
+            </div>
+            <span className={styles.sessionCount}>{savedSessions.length}</span>
+          </div>
+
+          <div className={styles.sessionControls}>
+            <input
+              type="text"
+              placeholder="Enter workspace name"
+              value={sessionName}
+              onChange={(event) => setSessionName(event.target.value)}
+              className={styles.sessionInput}
+            />
+            <button className={styles.saveButton} onClick={saveCurrentSession}>
+              Save
+            </button>
+          </div>
+
+          {savedSessions.length === 0 ? (
+            <div className={styles.status}>No saved workspaces yet.</div>
+          ) : (
+            <div className={styles.sessionList}>
+              {savedSessions.map((session) => (
+                <article key={session.id} className={styles.sessionCard}>
+                  <div>
+                    <div className={styles.sessionName}>{session.name}</div>
+                    <div className={styles.sessionMeta}>{session.tabCount} tabs · saved {new Date(session.createdAt).toLocaleString()}</div>
+                  </div>
+                  <div className={styles.sessionActions}>
+                    <button className={styles.restoreButton} onClick={() => restoreSavedSession(session.id)}>
+                      Open
+                    </button>
+                    <button className={styles.deleteButton} onClick={() => deleteSavedSession(session.id)}>
+                      Remove
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
 
       <footer className={styles.footer}>
         <span>{tabs.length} tabs loaded</span>
