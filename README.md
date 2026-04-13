@@ -14,15 +14,23 @@ Tabmind is a Chromium/Firefox-compatible browser extension scaffold built with M
 - `src/lib/tabService.js` - modular tab helpers and Chrome API wrappers.
 - `src/options/options.js` - options page logic.
 
-## Features Scaffolding
+## Features
 
-- Tab grouping by domain/topic
-- Fuzzy tab search/filtering UI
+- Tab grouping by domain/topic and manual grouping UI
+- Fuzzy search across open tab titles, URLs, and domains
 - Auto-suspend inactive tabs via background alarm scheduling
-- Session management hooks for named save/restore
-- Drag-and-drop reordering support planned in UI
-- Keyboard commands configured in `manifest.json`
-- Sync storage via `chrome.storage.sync`
+- Named session save/restore support with future UI hooks
+- Drag-and-drop tab reorder readiness in the popup
+- Keyboard shortcuts for power-user actions
+- Cross-device sync via `chrome.storage.sync`
+
+## Fixes
+
+- Ensured Manifest V3 compatibility with service worker background logic
+- Added `alarms` permission and scheduled auto-suspend flow
+- Added safe discard logic for inactive tabs
+- Loaded auto-suspend setting from synced storage
+- Added popup auto-suspend status indicator and improved grouping metadata
 
 ## Setup
 
