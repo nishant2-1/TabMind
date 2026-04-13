@@ -65,6 +65,180 @@
   color: white;
 }
 
+.controlRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.sessionControls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.sessionInput,
+.saveButton {
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+}
+
+.sessionInput {
+  background: white;
+}
+
+.saveButton {
+  background: #2563eb;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.sessionPanel {
+  margin-top: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 14px;
+  background: #ffffff;
+}
+
+.sessionPanelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.sessionList {
+  display: grid;
+  gap: 10px;
+}
+
+.sessionCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 12px;
+  background: #f9fafb;
+}
+
+.sessionName {
+  font-weight: 700;
+}
+
+.sessionMeta {
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 0.82rem;
+}
+
+.sessionActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.restoreButton,
+.deleteButton {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.restoreButton {
+  background: #2563eb;
+  color: white;
+}
+
+.deleteButton {
+  background: #ef4444;
+  color: white;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.boardColumn {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.boardTitle {
+  font-size: 0.95rem;
+  margin: 0 0 10px;
+}
+
+.boardCard {
+  margin-bottom: 10px;
+}
+
+.tabCard {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+}
+
+.tabCard[draggable='true'] {
+  cursor: grab;
+}
+
+.tabCard:active {
+  cursor: grabbing;
+}
+
+.tabAction {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+}
+
+.tabAction:hover {
+  background: #f3f4f6;
+}
+
+.tabTitle {
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.tabMeta {
+  font-size: 0.82rem;
+  color: #6b7280;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tabBadge {
+  font-size: 0.8rem;
+  color: #374151;
+  background: #e0f2fe;
+  border-radius: 9999px;
+  padding: 6px 10px;
+}
+
 .results {
   display: grid;
   gap: 10px;

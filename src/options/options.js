@@ -16,7 +16,10 @@ form.innerHTML = `
       <input type="checkbox" id="sessionRestore" />
       Enable named session save/restore
     </label>
-    <button id="saveButton" style="margin-top: 16px; padding: 10px 18px; border: none; border-radius: 10px; background: #2563eb; color: white; cursor: pointer;">Save settings</button>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; align-items: center;">
+      <button id="saveButton" style="padding: 10px 18px; border: none; border-radius: 10px; background: #2563eb; color: white; cursor: pointer;">Save settings</button>
+      <button id="clearSessionsButton" style="padding: 10px 18px; border: none; border-radius: 10px; background: #ef4444; color: white; cursor: pointer;">Clear saved sessions</button>
+    </div>
     <div id="status" style="margin-top: 12px; color: #374151;"></div>
   </section>
 `;
@@ -26,6 +29,7 @@ document.getElementById('options-root').appendChild(form);
 const autoSuspendInput = document.getElementById('autoSuspend');
 const sessionRestoreInput = document.getElementById('sessionRestore');
 const saveButton = document.getElementById('saveButton');
+const clearSessionsButton = document.getElementById('clearSessionsButton');
 const statusNode = document.getElementById('status');
 
 function setStatus(message) {
@@ -48,4 +52,11 @@ saveButton.addEventListener('click', () => {
       setTimeout(() => setStatus(''), 2000);
     }
   );
+});
+
+clearSessionsButton.addEventListener('click', () => {
+  chrome.storage.sync.set({ savedSessions: [] }, () => {
+    setStatus('Saved sessions cleared.');
+    setTimeout(() => setStatus(''), 2000);
+  });
 });
