@@ -149,11 +149,11 @@ The current last goal is to move from a functional scaffold to a complete user w
 | 19 | Add README docs | Documentation | Done | `README.md` updated |
 | 20 | Add project plan docs | Documentation | In progress | `PROJECT_PLAN.md` created |
 | 21 | Add competitor comparison | Discovery | Planned | Document in plan |
-| 22 | Add session save/restore logic | Feature | Pending | Highest priority |
-| 23 | Add drag-and-drop reordering | Feature | Pending | Needed for workspace UX |
+| 22 | Add session save/restore logic | Feature | Done | Saved sessions now persist via sync |
+| 23 | Add drag-and-drop reordering | Feature | Done | Reorder tabs in the current window |
 | 24 | Add keyboard shortcuts in popup | Feature | Pending | UX improvement |
-| 25 | Add session list UI | Feature | Pending | Save/restore sessions UI |
-| 26 | Add workspace board view | Feature | Planned | Kanban-style layout |
+| 25 | Add session list UI | Feature | Done | Session restore and delete actions added |
+| 26 | Add workspace board view | Feature | Done | Kanban-style grouped tab view enabled |
 | 27 | Add AI summarizer hook | Feature | Planned | Future enhancement |
 | 28 | Add error handling | Stability | Planned | Safe extension behavior |
 | 29 | Add tests / validations | Stability | Planned | Manual/automated tests |
@@ -165,11 +165,20 @@ The current last goal is to move from a functional scaffold to a complete user w
 
 ## 6. Recommended next steps
 
-1. Implement session save/restore first.
-2. Add drag-and-drop tab ordering and workspace views.
-3. Add a session list to the popup.
-4. Improve docs and competitor research.
-5. Continue feature development in `feature/session-save-restore` and `feature/tab-reordering`.
+1. Improve the workspace board view with card actions and session labels.
+2. Add keyboard shortcuts inside the popup for search, save, and restore.
+3. Add better session filtering and semantic search.
+4. Build AI summarization and tab cluster previews.
+5. Continue feature development in dedicated branches and merge incrementally.
+
+## Iterative upgrade process
+
+This project will be improved in repeating cycles:
+- Phase 1: Build the core extension shell and tab tooling.
+- Phase 2: Add automation and session persistence.
+- Phase 3: Improve UI workflows with drag-and-drop and workspaces.
+- Phase 4: Add advanced intelligence, summaries, and launch polish.
+- Phase 5: Iterate based on user feedback and performance.
 
 ---
 

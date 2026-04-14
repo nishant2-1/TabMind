@@ -1,4 +1,4 @@
-function chromePromise(fn, options = {}) {
+export function chromePromise(fn, options = {}) {
   return new Promise((resolve, reject) => {
     fn(options, (result) => {
       const lastError = chrome.runtime.lastError;
@@ -29,7 +29,14 @@ export async function fetchAllTabs() {
       url: tab.url || '',
       domain,
       groupTitle: group ? group.title || domain : 'Ungrouped',
-      groupId: tab.groupId
+      groupId: tab.groupId,
+      windowId: tab.windowId,
+      index: tab.index,
+      active: tab.active,
+      pinned: tab.pinned,
+      audible: tab.audible,
+      discarded: tab.discarded,
+      autoDiscardable: tab.autoDiscardable
     };
   });
 }

@@ -59,6 +59,17 @@ Tabmind is a Chromium/Firefox-compatible browser extension scaffold built with M
 - The extension uses Manifest V3.
 - No jQuery; React + vanilla JS only.
 - UI is modular and ready for incremental feature expansion.
+- Saved sessions and workspace state are persisted through `chrome.storage.sync`.
+
+## Iterative upgrade process
+
+This project is being built in reusable feature phases:
+1. Core tab listing and grouping
+2. Auto-suspend and storage sync
+3. Saved session workflows and restore
+4. Drag-and-drop ordering and workspace view
+5. Workspace/Kanban enhancements
+6. AI summarization and launch polish
 
 ## Project Plan
 
