@@ -50,4 +50,5 @@ Tabmind is a Chromium/Firefox-compatible browser extension scaffold built with M
 
 - The extension uses Manifest V3.
 - No jQuery; React + vanilla JS only.
-- UI is modular and ready for incremental feature expansion.  
+- UI is modular and ready for incremental feature expansion.  ..
+- making it as the new commit
